@@ -1,0 +1,23 @@
+<table id=‘calendar’>
+	<tr>
+		<th>Sunday</th><th>Monday</th>
+		<th>Tuesday</th><th>Wednesday</th>
+		<th>Thursday</th><th>Friday</th>
+		<th>Saturday</th>
+	</tr>
+	<tr>
+		<% cur_date = Time.now %>
+		<% @beginning_of_month = Date.civil(cur_date.year, cur_date.month, 1) %>
+		<% @end_of_month = Date.civil(cur_date.year, cur_date.month, -1) %>
+
+		<% (@beginning_of_month..@end_of_month).each do |d| %>
+			<% if d == @beginning_of_month %>
+				<% d.wday.times do %>
+					<td class=‘offset’></td>
+				<% end %>
+			<% end %>
+		<% if d.wday == 0 %> </tr><tr> <% end %>
+		<td> <%= d.day %> <%= check_box :complete %></td>
+		<% end %>
+	</tr>
+</table>

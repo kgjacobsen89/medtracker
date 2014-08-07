@@ -1,0 +1,16 @@
+<h1>Create a new account</h1>
+
+<%= form_for @user do |f| %>
+	<%= f.text_field :first_name, placeholder: "First Name" %><br />
+	<%= f.text_field :last_name, placeholder: "Last Name" %><br />
+	<%= f.text_field :email, placeholder: "Email" %><br />
+	<%= f.password_field :password, placeholder: "Password" %><br />
+	<%= f.password_field :password_confirmation, placeholder: "Confirm Password" %><br />
+
+	<%= f.submit "Sign Up" %>
+	
+<% end %>
+
+<%= link_to "Back to Main Page!", users_path %>
+
+post 'users/' => 'users#create'
