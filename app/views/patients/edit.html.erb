@@ -1,0 +1,11 @@
+<h1> Edit Patient Information</h1>
+
+<%= form_for @patient do |f| %>
+	<%= f.text_field :first_name, placeholder: "First Name" %>
+	<%= f.text_field :last_name, placeholder: "Last Name" %>
+	<%= f.text_field :sex, placeholder: "Male/Female" %>
+	<%= f.date_select :DOB, :start_year=>1900 %>
+	<%= f.submit "Edit" %>
+<% end %>
+
+<%= link_to "Back to the list", medications_path %>

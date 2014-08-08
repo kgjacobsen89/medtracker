@@ -1,0 +1,12 @@
+<h1>Medications</h1>
+<ul>
+	<% @medications.each do |m| %>
+	<li>
+		<strong><%= m.name %> </strong> -- 
+		<%= m.dosage %>
+		<i><%= link_to "Edit", edit_medication_path(m.id) %></i>
+	</li>
+	<% end %>
+</ul>
+
+<%= link_to "Create New Medications", new_medication_path %>

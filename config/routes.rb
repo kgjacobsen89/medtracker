@@ -1,13 +1,18 @@
 Medtracker::Application.routes.draw do
 
+
   get 'users/' => 'users#index', as: :users
   get 'users/new' => 'users#new', as: :new_user
   get 'users/:id' => 'users#show', as: :user
   post 'users' => 'users#create'
 
   resource :session, only: [:new, :create, :destroy]
-  resources :doctors
-  
+  resources :doctors do 
+    resources :patients do
+      resources :medications 
+    end
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

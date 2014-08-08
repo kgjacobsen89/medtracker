@@ -1,0 +1,7 @@
+<h1><%= @patient.first_name @patient.last_name %></h1>
+
+<!-- <p>This coffee is a <b><%= @bean.roast %></b> roast from <i><%= @bean.origin %></i>, and we have <%= @bean.quantity %> pounds available. </p> -->
+
+<%= link_to "Delete", :patient, method: :delete, data: { confirm: "Are you sure you want to delete #{@patient.first_name @patient.last_name }?"} %>
+
+<%= link_to "Back to the list!", patients_path %>
