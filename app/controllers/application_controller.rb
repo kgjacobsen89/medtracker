@@ -6,6 +6,6 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   def current_user
-  	@current_user ||= User.where(id: session[:customer_id]).first
+  	@current_user ||= User.where(id: session[:user_id]).first
   end
 end

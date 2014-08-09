@@ -17,4 +17,10 @@ class UsersController < ApplicationController
 			render 'new'
 		end
 	end
+
+	def destroy
+		User.find(params[:id]).destroy
+		redirect_to users_path
+	end
+	
 end
