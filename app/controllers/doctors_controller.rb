@@ -1,42 +1,41 @@
 class DoctorsController < ApplicationController
+	before_action :current_user
 
 	def home
-		@user = User.new
 	end
 
 	def index
-		if !current_user
-			redirect_to home_path
-			return
-		end
-		# @doctors = Doctor.where(user_id: current_user.id)
-		@doctors = current_user.doctors 
+		@doctors = Doctor.all
 	end
 
 	def new
-		if !current_user
-			redirect_to new_session_path
-			return
-		end
+		if @patient_user 
+			redirect_to root_path
+		elsif @doctor_user
 		@doctor = Doctor.new
+		else
+		redirect_to root_path
+		end	
 	end
 
 	def create
-		if !current_user
-			redirect_to new_session_path
-			return
+		@doctor = Doctor.new(params.require(:doctor).permit(:first_name, :last_name, :email,
+		 :password, :password_confirmation))
+		@doctor.doctor = true
+		if @doctor.save
+			redirect_to doctor_path(@doctor.id)
+		else
+			render 'new'
 		end
-		# Make a new doctor object that is attached to the user
-		decision = current_user.doctors.new(
-			params.require(:doctor).permit(:first_name, :last_name, :email, :password_digest)
-			)
-		if doctor.save
-			redirect_to doctors_path
-		end
+	end
+
+	def show
+		@doctor = Doctor.find(params[:id])
 	end
 
 	def destroy
 		Doctor.find(params[:id]).destroy
-		redirect_to doctors_path
+		redirect_to root_path
 	end
+	
 end

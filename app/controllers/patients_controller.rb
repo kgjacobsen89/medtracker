@@ -1,5 +1,4 @@
 class PatientsController < ApplicationController
-	before_action :get_doctor, :check_security
 
 	def index
 		@patients = Patient.all
@@ -14,11 +13,11 @@ class PatientsController < ApplicationController
 	end
 
 	def create
-		@patient = Patient.new(
-			params.require(:patient).permit(:first_name, :last_name, :sex, :DOB)
-			) 
+		@patient = Patient.new(params.require(:patient).permit(:first_name, :last_name, :sex, :DOB, :doctor_id, :email, :password, :password_confirmation))
+		@patient.doctor = false
 		if @patient.save 
-			redirect_to doctor_patients_path(@doctor.id)
+			session[:patient_id] = p.id.to_s
+			redirect_to patient_path(@patient.id)
 		else 
 			render 'new' 
 		end  
@@ -30,8 +29,9 @@ class PatientsController < ApplicationController
 
 	def update
 		@patient = Patient.find(params[:id])
-		if @patient.update_attributes(params.require(:patient).permit(:first_name, :last_name, :sex, :DOB))
-			redirect_to doctor_patients_path(@doctor.id)
+		if @patient.update_attributes(params.require(:patient).permit(:first_name, :last_name, :sex, :DOB, :doctor_id, :email, :password, :password_confirmation))
+		@patient.doctor = false
+			redirect_to patient_path(@patient.id)
 		else 
 			render 'edit'
 		end
@@ -39,19 +39,13 @@ class PatientsController < ApplicationController
 
 	def destroy
 		Patient.find(params[:id]).destroy
-		redirect_to doctor_patients_path(@doctor.id)
+		redirect_to patients_path()
 	end
 
 private
 
 	def get_doctor
 		@doctor = Doctor.find(params[:doctor_id])
-	end
-
-	def check_security
-		if (!current_user) || (@doctor.user != current_user)
-			redirect_to home_path
-		end
 	end
 	
 end

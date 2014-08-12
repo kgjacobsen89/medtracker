@@ -4,9 +4,9 @@
 	<li>
 		<strong><%= p.first_name p.last_name %> </strong> -- 
 		<%= p.DOB %>
-		<i><%= link_to "Edit", edit_patient_path(p.id) %></i>
+		<i><%= link_to "Edit", edit_doctor_patient_path(@doctor.id, p.id) %></i>
 	</li>
 	<% end %>
 </ul>
 
-<%= link_to "Create New Patients", new_patient_path %>
+<%= link_to "Add New Patients", new_doctor_patient_path(@doctor.id) %>

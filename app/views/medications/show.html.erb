@@ -4,4 +4,4 @@
 
 <%= link_to "Delete", :medication, method: :delete, data: { confirm: "Are you sure you want to delete #{@medication.name}?"} %>
 
-<%= link_to "Back to the list!", medications_path %>
+<%= link_to "Back to the list!", doctor_patient_medications_path(@patient.id) %>

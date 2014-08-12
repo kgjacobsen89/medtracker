@@ -1,11 +1,11 @@
 <h1> Edit Medication </h1>
 
 <%= form_for @medication do |f| %>
-	Name: <%= f.text_field :name, placeholder: "Name" %>
-	<%= f.text_field :dosage, placeholder: "Dosage (in mg)" %>
-	<%= f.text_field :periodicity, placeholder: "(i.e. daily, biweekly, monthly)" %><br>
-	<%= f.number_field :duration, placeholder: "(in months)" %><br>
+	<%= f.text_field :name, placeholder: "Name" %><br />
+	<%= f.text_field :dosage, placeholder: "Dosage (in mg)" %><br />
+	<%= f.text_field :periodicity, placeholder: "(i.e. daily, biweekly, monthly)" %><br />
+	<%= f.number_field :duration, placeholder: "(in months)" %><br />
 	<%= f.submit "Edit" %><br>
 <% end %>
 
-<%= link_to "Back to the list", medications_path %>
+<%= link_to "Back to the list", doctor_patient_medications_path(@patient.id) %>

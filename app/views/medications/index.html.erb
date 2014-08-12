@@ -4,9 +4,9 @@
 	<li>
 		<strong><%= m.name %> </strong> -- 
 		<%= m.dosage %>
-		<i><%= link_to "Edit", edit_medication_path(m.id) %></i>
+		<i><%= link_to "Edit", edit_doctor_patient_medication_path(@patient.id, m.id) %></i>
 	</li>
 	<% end %>
 </ul>
 
-<%= link_to "Create New Medications", new_medication_path %>
+<%= link_to "Create New Medications", new_doctor_patient_medication_path(@patient.id) %>
