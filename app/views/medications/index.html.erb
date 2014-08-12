@@ -4,7 +4,7 @@
 	<li>
 		<strong><%= m.name %> </strong> -- 
 		<%= m.dosage %>
-		<i><%= link_to "Edit", edit_doctor_patient_medication_path(@patient.id, m.id) %></i>
+		<i><%= link_to "Edit", edit_patient_medication_path(@patient.id, m.id) %></i>
 	</li>
 	<% end %>
 </ul>

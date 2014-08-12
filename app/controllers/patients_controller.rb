@@ -1,4 +1,5 @@
 class PatientsController < ApplicationController
+	before_action :check_security
 
 	def index
 		@patients = Patient.all
@@ -14,9 +15,7 @@ class PatientsController < ApplicationController
 
 	def create
 		@patient = Patient.new(params.require(:patient).permit(:first_name, :last_name, :sex, :DOB, :doctor_id, :email, :password, :password_confirmation))
-		@patient.doctor = false
 		if @patient.save 
-			session[:patient_id] = p.id.to_s
 			redirect_to patient_path(@patient.id)
 		else 
 			render 'new' 
@@ -30,7 +29,6 @@ class PatientsController < ApplicationController
 	def update
 		@patient = Patient.find(params[:id])
 		if @patient.update_attributes(params.require(:patient).permit(:first_name, :last_name, :sex, :DOB, :doctor_id, :email, :password, :password_confirmation))
-		@patient.doctor = false
 			redirect_to patient_path(@patient.id)
 		else 
 			render 'edit'
@@ -39,13 +37,17 @@ class PatientsController < ApplicationController
 
 	def destroy
 		Patient.find(params[:id]).destroy
-		redirect_to patients_path()
+		redirect_to patients_path
 	end
 
 private
-
 	def get_doctor
 		@doctor = Doctor.find(params[:doctor_id])
 	end
-	
+	def check_security
+		# If they're not logged in or they don't own this medication, redirect to home page
+		if (!current_user) || (@doctor.patient != current_user) || (@patient) != current_user)
+			redirect_to root_path
+		end
+	end
 end

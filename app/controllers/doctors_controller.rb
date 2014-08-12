@@ -9,13 +9,7 @@ class DoctorsController < ApplicationController
 	end
 
 	def new
-		if @patient_user 
-			redirect_to root_path
-		elsif @doctor_user
 		@doctor = Doctor.new
-		else
-		redirect_to root_path
-		end	
 	end
 
 	def create

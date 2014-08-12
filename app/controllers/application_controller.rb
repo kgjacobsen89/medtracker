@@ -7,9 +7,9 @@ class ApplicationController < ActionController::Base
 
   def current_user
   	if session[:doctor_id]
-  		@doctor_user ||= Doctor.find(session[:doctor_id]) 
+  		@current_user ||= Doctor.find(session[:doctor_id]) 
   	elsif session[:patient_id]
-  		@patient_user ||= Patient.find(session[:patient_id]) 
+  		@current_user ||= Patient.find(session[:patient_id]) 
   	end
 	end
 

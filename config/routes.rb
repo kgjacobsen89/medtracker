@@ -1,8 +1,9 @@
 Medtracker::Application.routes.draw do
 
   resources :doctors
-  resources :patients
-  resources :medications 
+  resources :patients do
+    resources :medications 
+  end
 
 
   resource :session, only: [:new, :create, :destroy]

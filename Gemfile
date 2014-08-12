@@ -5,8 +5,6 @@ gem 'rails', '4.0.4'
 
 gem 'mongoid', github: 'mongoid/mongoid'
 
-gem 'fullcalendar-rails'
-
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.2'
 
