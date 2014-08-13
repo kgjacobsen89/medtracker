@@ -1,7 +1,17 @@
 <h1>Log in!</h1>
 
-<%= form_for @user do |f| %>
-	<%= f.text_field :email, placeholder: "Email" %><br />
-	<%= f.password_field :password, placeholder: "Password" %><br />
-	<%= f.submit "Log in" %>
+<% if @type == 'doctor' %>
+	<%= form_for @doctor do |f| %>
+		<%= f.text_field :email, placeholder: "Email" %><br />
+		<%= f.password_field :password, placeholder: "Password" %><br />
+		<%= f.submit "Log in" %>
+	<% end %>
+
+<% else %>
+	<%= form_for @patient do |f| %>
+		<%= f.text_field :email, placeholder: "Email" %><br />
+		<%= f.password_field :password, placeholder: "Password" %><br />
+		<%= f.submit "Log in" %>
+	<% end %>
+
 <% end %>

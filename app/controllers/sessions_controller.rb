@@ -21,16 +21,18 @@ class SessionsController < ApplicationController
 				redirect_to new_session_path
 			end
 		else
-		if @doctor != nil		
-		d = Doctor.where(email: params[:doctor][:email]).first
-		if d && d.authenticate(params[:doctor][:password])
-			# Store as a cookie in the Users' browser the ID of them,
-			# indicating that they are logged in
-			session[:doctor_id] = d.id.to_s
-			redirect_to doctor_path(@doctor.id)
-		else
-			# Go back to the login page
-			redirect_to new_session_path
+			if @doctor != nil		
+				d = Doctor.where(email: params[:doctor][:email]).first
+				if d && d.authenticate(params[:doctor][:password])
+					# Store as a cookie in the Users' browser the ID of them,
+					# indicating that they are logged in
+					session[:doctor_id] = d.id.to_s
+					redirect_to doctor_path(@doctor.id)
+				else
+					# Go back to the login page
+					redirect_to new_session_path
+				end
+			end
 		end
 	end
 
@@ -38,5 +40,4 @@ class SessionsController < ApplicationController
 		reset_session
 		redirect_to home_path
 	end
-
 end

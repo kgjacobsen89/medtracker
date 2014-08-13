@@ -1,6 +1,7 @@
 Medtracker::Application.routes.draw do
 
   resources :doctors
+  
   resources :patients do
     resources :medications 
   end
