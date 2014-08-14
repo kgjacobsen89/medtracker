@@ -29,7 +29,7 @@ class DoctorsController < ApplicationController
 		@doctor = Doctor.find(params[:id])
 		if @doctor.update_attributes(doctor_params)
 			redirect_to doctor_path
-		else 
+		else
 			render 'edit'
 		end
 	end
@@ -40,10 +40,9 @@ class DoctorsController < ApplicationController
 	end
 
 	private
-	def doctor_params 
-		params.require(:patient).permit(
-			:speciality, :location, patient_medication_ids: [])
+	def doctor_params
+		params.require(:doctor).permit(
+			:first_name, :last_name, :speciality, :location, :phone_number, patient_medication_ids: [])
 	end
 
-	
 end

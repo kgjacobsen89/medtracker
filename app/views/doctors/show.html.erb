@@ -1,16 +1,6 @@
 <h1><%= @doctor.first_name %> <%= @doctor.last_name %></h1>
 
 <h1>Patients</h1>
-<ul>
-	<% @doctor.patients.each do |p| %>
-	<li>
-		<strong><%= p.first_name %> <%= p.last_name %> </strong> -- 
-		<%= p.DOB %>
-		<i><%= link_to "Edit", edit_patient_path(@patient.id) %></i>
-	</li>
-	<% end %>
-</ul>
-
 
 
 <%= link_to "Delete", :doctor, method: :delete, data: { confirm: "Are you sure you want to delete #{@doctor.first_name} #{@doctor.last_name}"} %> 

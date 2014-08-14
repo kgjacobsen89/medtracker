@@ -51,11 +51,11 @@ class PatientsController < ApplicationController
 		redirect_to patients_path
 	end
 
-	private 
+	private
 
-	def patient_params 
+	def patient_params
 		params.require(:patient).permit(
-			:sex, :DOB, :blood_type, :medication_ids => [], :doctor_ids => [])
+			:first_name, :last_name, :phone_number, :sex, :DOB, :blood_type, :medication_ids => [], :doctor_ids => [])
 	end
 
 end
