@@ -26,7 +26,7 @@ class PatientsController < ApplicationController
 	def create
 		@patient = Patient.new(patient_params)
 		if @patient.save 
-			redirect_to user_patient_path(@user.id, @patient.id)
+			redirect_to patient_path
 		else 
 			render 'new' 
 		end  
@@ -39,7 +39,7 @@ class PatientsController < ApplicationController
 	def update
 		@patient = Patient.find(params[:id])
 		if @patient.update_attributes(patient_params)
-			redirect_to user_patient_path(@user.id)
+			redirect_to patient_path
 		else 
 			render 'edit'
 		end
@@ -48,14 +48,14 @@ class PatientsController < ApplicationController
 	# For doctors to delete patients
 	def destroy
 		Patient.find(params[:id]).destroy
-		redirect_to user_patients_path(@user.id)
+		redirect_to patients_path
 	end
 
 	private 
 
 	def patient_params 
 		params.require(:patient).permit(
-			:first_name, :last_name, :sex, :DOB, :email, :phone_number, :blood_type, :medication_ids => [], :doctor_ids => [])
+			:sex, :DOB, :blood_type, :medication_ids => [], :doctor_ids => [])
 	end
 
 end

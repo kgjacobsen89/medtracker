@@ -1,7 +1,7 @@
-<h1>Log in!</h1>
+<h1>Log in</h1>
 
-<%= form_for @user do |f| %>
-	<%= f.text_field :email, placeholder: "Email" %><br />
+<%= form_for @doctor || @patient do |f| %>
+	<%= f.text_field :username, placeholder: "Username" %><br />
 	<%= f.password_field :password, placeholder: "Password" %><br />
 	<%= f.submit "Log in" %>
 <% end %>

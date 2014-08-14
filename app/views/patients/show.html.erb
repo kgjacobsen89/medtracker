@@ -1,11 +1,7 @@
-<h1><%= @patient.first_name @patient.last_name %></h1>
-
-<%= link_to "Delete", :patient, method: :delete, data: { confirm: "Are you sure you want to delete #{@patient.first_name @patient.last_name }?"} %>
+<h1> <%= @patient.first_name %> <%= @patient.last_name %> </h1>
 
 
 
+<%= link_to "Delete", :patient, method: :delete, data: {confirm: "Are you sure you want to delete #{@patient.first_name} #{@patient.last_name }?"} %>
 
 
-
-
-<%= link_to "Back to the list", doctor_patients_path(@doctor.id) %>

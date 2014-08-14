@@ -1,12 +1,17 @@
 <h1>Patients</h1>
+
+<p>
+	<%= link_to "Show All", patients_path(patientfilter: "showall") %> <br />
+<p>
+
 <ul>
 	<% @patients.each do |p| %>
 	<li>
-		<strong><%= p.first_name p.last_name %> </strong> -- 
-		<%= p.DOB %>
-		<i><%= link_to "Edit", edit_doctor_patient_path(@doctor.id, p.id) %></i>
+		<strong> <%= p.first_name %> <%= p.last_name %> </strong> <br />
+		<%= p.DOB %> <br />
+		<i> <%= link_to "Patient Profile", patient_path(p) %> </i>
 	</li>
 	<% end %>
 </ul>
 
-<%= link_to "Add New Patients", new_doctor_patient_path(@doctor.id) %>
+<%= link_to "Doctor Profile", doctor_path %>

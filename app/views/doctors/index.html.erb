@@ -1,1 +1,13 @@
-#show list of all doctors?
+<h1>Doctors</h1>
+<p>
+	<%= link_to "Show All", doctors_path(doctorfilter: "showall") %> <br/>
+</p>
+
+<ul> 
+	<% @doctors.each do |d| %>
+	<li>
+		<strong> Dr.<%= d.first_name %> <%= d.last_name %> </strong>
+		<%= link_to "Doctor Profile", doctor_path(d) %>
+	</li>
+	<%= end %>
+</ul>

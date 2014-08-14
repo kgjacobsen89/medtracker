@@ -11,7 +11,7 @@ class DoctorsController < ApplicationController
 	def create
 		@doctor = Doctor.new(doctor_params)
 		if @doctor.save
-			redirect_to user_doctor_path(@user.id)
+			redirect_to doctor_path
 		else
 			render 'new'
 		end
@@ -28,7 +28,7 @@ class DoctorsController < ApplicationController
 	def update
 		@doctor = Doctor.find(params[:id])
 		if @doctor.update_attributes(doctor_params)
-			redirect_to user_doctor_path(@user.id)
+			redirect_to doctor_path
 		else 
 			render 'edit'
 		end
@@ -42,7 +42,7 @@ class DoctorsController < ApplicationController
 	private
 	def doctor_params 
 		params.require(:patient).permit(
-			:speciality, :location, :email, patient_medication_ids: [])
+			:speciality, :location, patient_medication_ids: [])
 	end
 
 	
