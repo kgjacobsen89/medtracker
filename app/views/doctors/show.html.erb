@@ -1,6 +1,15 @@
 <h1><%= @doctor.first_name %> <%= @doctor.last_name %></h1>
 
-<h1>Patients</h1>
+<h2> Doctor Information </h2>
+Specialization: <%= @doctor.specialty %> <br />
+Practice Location: <%= @doctor.location %> <br / >
+
+<h2> Patients </h2>
+
+
+<h3> Contact Information </h3>
+Phone: <%= @doctor.phone_number %> <br />
+Email: <%= @doctor.email %> <br />
 
 
 <%= link_to "Delete", :doctor, method: :delete, data: { confirm: "Are you sure you want to delete #{@doctor.first_name} #{@doctor.last_name}"} %> 

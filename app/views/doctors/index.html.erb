@@ -6,7 +6,7 @@
 <ul>
 	<% @doctors.each do |d| %>
 	<li>
-		<strong> Dr.<%= d.first_name %> <%= d.last_name %> </strong>
+		<strong> Dr. <%= d.first_name %> <%= d.last_name %> </strong>
 		<%= link_to "Doctor Profile", doctor_path(d) %>
 	</li>
 	<% end %>

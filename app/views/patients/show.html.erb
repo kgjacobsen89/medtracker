@@ -1,12 +1,15 @@
 <h1> <%= @patient.first_name %> <%= @patient.last_name %> </h1>
 
 <h2> Patient Information </h2>
-
+Sex: <%= @patient.sex %> <br />
+Date of Birth: <%= @patient.DOB %> <br / >
+Blood Type: <%= @patient.blood_type %> <br />
+Medications: <%= @patient.medication_ids %> <br />
+Doctors: <%= @patient.doctor_ids %>
 
 <h3> Contact Information </h3>
-
-phone_number, :sex, :DOB, :blood_type, :medication_ids => [], :doctor_ids => [])
-
+Phone: <%= @patient.phone_number %> <br />
+Email: <%= @patient.email %><br />
 
 
 <%= link_to "Delete Patient", :patient, method: :delete, data: {confirm: "Are you sure you want to delete #{@patient.first_name} #{@patient.last_name }?"} %>

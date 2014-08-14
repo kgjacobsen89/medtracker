@@ -2,11 +2,10 @@
 <ul>
 	<% @medications.each do |m| %>
 	<li>
-		<strong><%= m.name %> </strong> -- 
-		<%= m.dosage %>
-		<i><%= link_to "Edit", edit_patient_medication_path(@patient.id, m.id) %></i>
+		<strong><%= m.name %> </strong>
+		<i><%= link_to "Edit", user_medication_path(@user.id) %></i>
 	</li>
 	<% end %>
 </ul>
 
-<%= link_to "Create New Medications", new_patient_medication_path(@patient.id) %>
+<%= link_to "Create New Medications", new_user_medication_path(@user.id) %>
