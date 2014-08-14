@@ -11,11 +11,11 @@ class SessionsController < ApplicationController
 		if @user && @user.authenticate(params[:user][:password])
 			# Store as a cookie in the users' browser the ID of them,
 			# indicating that they are logged in
-			session[:user_id] = u.id.to_s
+			session[:user_id] = @user.id.to_s
 			if @user._type == 'Patient'
-				redirect_to patient_path(patient_id: @user.id)
+				redirect_to patient_path(@user.id)
 			elsif @user._type == 'Doctor'
-				redirect_to doctor_path(doctor_id: @user.id)
+				redirect_to doctor_path(@user.id)
 			end
 		else
 			# Go back to the login page
