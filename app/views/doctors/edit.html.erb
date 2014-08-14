@@ -1,4 +1,4 @@
-<h1>Create New Doctor Profile</h1>
+<h1>Edit Doctor Profile</h1>
 
 <%= form_for @doctor do |f| %>
 	<%= f.text_field :first_name, placeholder: "First Name" %><br />
@@ -8,7 +8,7 @@
 	<%= f.text_field :email, placeholder: "Email" %><br />
 	<%= f.text_field :phone_number, placeholder: "Phone Number" %><br />
 
-	<%= f.submit "Create" %>
+	<%= f.submit "Edit" %>
 	
 <% end %> 
 

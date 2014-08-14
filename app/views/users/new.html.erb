@@ -1,0 +1,17 @@
+<h1>Welcome to MedTracker</h1>
+
+<h1>Sign Up Here</h1>
+
+<%= form_for @user do |f| %>
+  <%= f.text_field :username, placeholder:"Username" %>
+  <%= f.text_field :email, placeholder:"Email" %>
+  <%= f.password_field :password, placeholder:"Password" %>
+  <%= f.password_field :password_confirmation, placeholder:"Confirm Password" %>
+
+  <%= select_tag "user_type", options_for_select(["Patient", "Doctor"]) %>
+
+  <%= f.submit @button_face %>
+
+<% end %>
+
+<%= link_to "Sign In", new_session_path %>

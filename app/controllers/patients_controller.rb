@@ -1,7 +1,18 @@
 class PatientsController < ApplicationController
 
+	# For doctors to see list of patients
 	def index
-		@patients = Patient.all
+		my_patient_filter = params[:patientfilter]
+		case my_patient_filter
+		when "Show All"
+			@patients = Patient.all
+		when "Male"
+			@patients = Patient.where(:sex => "Male")
+		when "Female"
+			@patients = Patient.where(:sex => "Female")
+		else 
+			@patients = Patient.all
+		end
 	end
 
 	def show
@@ -9,13 +20,13 @@ class PatientsController < ApplicationController
 	end
 
 	def new
-		@patient = Patient.new
+		@patient = Patient.find(params[:patient_id])
 	end
 
 	def create
-		@patient = Patient.new(params.require(:patient).permit(:first_name, :last_name, :sex, :DOB, :email, :password, :password_confirmation))
+		@patient = Patient.new(patient_params)
 		if @patient.save 
-			redirect_to new_session_path
+			redirect_to user_patient_path(@user.id, @patient.id)
 		else 
 			render 'new' 
 		end  
@@ -27,16 +38,24 @@ class PatientsController < ApplicationController
 
 	def update
 		@patient = Patient.find(params[:id])
-		if @patient.update_attributes(params.require(:patient).permit(:first_name, :last_name, :sex, :DOB, :email, :password, :password_confirmation))
-			redirect_to patient_path(@patient.id)
+		if @patient.update_attributes(patient_params)
+			redirect_to user_patient_path(@user.id)
 		else 
 			render 'edit'
 		end
 	end
 
+	# For doctors to delete patients
 	def destroy
 		Patient.find(params[:id]).destroy
-		redirect_to patients_path
+		redirect_to user_patients_path(@user.id)
+	end
+
+	private 
+
+	def patient_params 
+		params.require(:patient).permit(
+			:first_name, :last_name, :sex, :DOB, :email, :phone_number, :blood_type, :medication_ids => [], :doctor_ids => [])
 	end
 
 end
