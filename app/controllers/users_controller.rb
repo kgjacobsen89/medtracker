@@ -6,7 +6,6 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
-    @is_signup = true
   end
 
   def create
