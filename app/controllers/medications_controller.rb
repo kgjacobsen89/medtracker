@@ -13,7 +13,7 @@ class MedicationsController < ApplicationController
 	end
 
 	def create
-		@medication = Medication.new(params.require(:medication).permit(:name, :dosage, :periodicity, :duration)) 
+		@medication = Medication.new(medication_params) 
 		if @medication.save 
 			redirect_to user_medications_path(@user.id)
 		else 
@@ -26,8 +26,8 @@ class MedicationsController < ApplicationController
 	end
 
 	def update
-		@medication = @patient.Medication.find(params[:id])
-		if @medication.update_attributes(params.require(:medication).permit(:name, :dosage, :periodicity, :duration))
+		@medication = Medication.find(params[:id])
+		if @medication.update_attributes(medication_params)
 			redirect_to user_medications_path(@user.id)
 		else 
 			render 'edit'
@@ -38,6 +38,13 @@ class MedicationsController < ApplicationController
 		@medication = Medication.find(params[:id]).destroy 
 		redirect_to user_medications_path(@user.id)
 	end
+
+	private
+
+	def medication_params
+		params.require(:medication).permit(
+			:name, :dosage, :periodicity, :duration)
+
 end
 
 

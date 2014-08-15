@@ -5,7 +5,9 @@ class Patient < User
   field :blood_type, type: String
 
   has_many :patient_medications
+  accepts_nested_attributes_for :patient_medications
   has_many :patient_doctors
+  accepts_nested_attributes_for :patient_doctors
 
   def medications
     Medication.find medication_ids
@@ -61,7 +63,7 @@ class Patient < User
   def doctor_list
     doctors_string = ""
     doctors.each do |one_doctor|
-      doctors_string += ", " + one_doctor.name
+      doctors_string += ", " + one_doctor.first_name + " " + one_doctor.last_name
     end
     doctors_string.slice(2, doctors_string.length - 1)
     doctors_string

@@ -1,18 +1,17 @@
-<h1> Create New Patient Profile </h1>
+<h1> Create Patient Profile </h1>
 
 <%= form_for @patient do |f| %>
-	<%= f.text_field :first_name, placeholder: "First Name" %><br />
-	<%= f.text_field :last_name, placeholder: "Last Name" %><br />
-	<%= f.text_field :sex, placeholder: "Male/Female" %><br />
+	First Name: <%= f.text_field :first_name, placeholder: "ex. John" %><br />
+	Last Name: <%= f.text_field :last_name, placeholder: "ex. Doe" %><br />
+	Sex: <%= f.select_tag :sex, options_for_select(["Male", "Female", "TransMale/Transman", "TransFemale/Transwoman", "Genderqueer", "Decline to State"]) :selected => params[:sex] %><br />
 	Date of Birth: <%= f.date_field :DOB %><br />
-	<%= f.text_field :blood_type, placeholder: "Blood Type" %><br />
-	
-	<%= f.text_field :email, placeholder: "Email" %><br />
-	<%= f.text_field :phone_number, placeholder: "Phone Number" %><br />
-	<%= f.collection_check_boxes :doctor_ids, Doctor.all, :doctor, :last_name %><br />
+	Blood Type: <%= f.select_tag :blood_type, options_for_select(["O+", "O-", "A+", "A-", "B+", "B-", "AB+", "AB-", "Unknown"]) :selected => params[:blood_type] %><br />
+	Email: <%= f.text_field :email, placeholder: "ex. patient@gmail.com" %><br />
+	Phone Number: <%= f.text_field :phone_number, placeholder: "(XXX) XXX-XXXX" %><br />
+	Your Doctors: <%= f.collection_check_boxes :doctor_ids, Doctor.all, :doctor, :last_name %><br />
 
 	<%= f.submit @button_face %>
 
 <% end %>
 
-<%#= link_to "User Page", user_patient_path(@user.id) %>
+<%= link_to "User Page", patient_path(@user.id) %>

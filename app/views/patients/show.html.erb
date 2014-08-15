@@ -4,8 +4,26 @@
 Sex: <%= @patient.sex %> <br />
 Date of Birth: <%= @patient.DOB %> <br / >
 Blood Type: <%= @patient.blood_type %> <br />
-Medications: <%= @patient.medication_ids %> <br />
-Doctors: <%= @patient.doctor_ids %>
+
+<h2> Patient's Selected Doctors </h2>
+<ul>
+	<% @patient.doctor_ids.each do |d| %>
+	<li>
+		<strong> Dr. <%= d.first_name %> <%= d.last_name %> </strong>
+		<%= link_to "Doctor Profile", doctor_path(d) %>
+	</li>
+	<% end %>
+</ul>
+
+<h2> Patient Medications </h2>
+<ul>
+	<% @patient.medication_ids.each do |m| %>
+	<li>
+		<strong> <%= m.name %> </strong>
+		<%= link_to "Medication Profile", medication_path(m) %> <br />
+	</li>
+	<% end %>
+</ul>
 
 <h3> Contact Information </h3>
 Phone: <%= @patient.phone_number %> <br />

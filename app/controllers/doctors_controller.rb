@@ -1,7 +1,10 @@
 class DoctorsController < ApplicationController
 
 	def index
-		@doctors = Doctor.all
+		my_doctor_filter = params[:doctorfilter]
+		case my_doctor_filter
+		when "Show All"
+			@doctors = Doctor.all
 	end
 
 	def new

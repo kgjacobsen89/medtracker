@@ -4,7 +4,9 @@ class Doctor < User
   field :location, type: String
 
   has_many :patient_doctors
+  accepts_nested_attributes_for :patient_doctors
   has_many :med_prescribed_bys
+  accepts_nested_attributes_for :med_prescribed_bys
 
   def patient_medications
     PatientMedication.find patient_medication_ids

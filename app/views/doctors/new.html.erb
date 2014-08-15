@@ -1,14 +1,13 @@
-<h1>Create New Doctor Profile</h1>
+<h1>Create Doctor Profile</h1>
 
 <%= form_for @doctor do |f| %>
-	<%= f.text_field :first_name, placeholder: "First Name" %><br />
-	<%= f.text_field :last_name, placeholder: "Last Name" %><br />
-	<%= f.text_field :speciality, placeholder: "Speciality" %><br />
-	<%= f.text_field :location, placeholder: "Practice Location" %><br />
-	<%= f.text_field :email, placeholder: "Email" %><br />
-	<%= f.text_field :phone_number, placeholder: "Phone Number" %><br />
+	First Name: <%= f.text_field :first_name, placeholder: "ex. John" %><br />
+	Last Name: <%= f.text_field :last_name, placeholder: "ex. Doe" %><br />
+	Specialization: <%= f.select_tag :speciality, options_for_select(["Primary Care - Family Medicine", "Primary Care - Internal Medicine", "Hospitalist", "Surgeon", "Cardiologist", "Dermatologist", "Endocrinologist", "Gastroenterologist", "Infectious Disease", "Nephrologist", "Ophthalmologist", "Obstetrician/Gynecologist", "Otolaryngologist", "Pediatrician", "Pulmonologist", "Psychiatrist"]), :selected => params[:speciality] %><br />
+	City of Practice: <%= f.text_field :location, placeholder: "ex. Los Angeles, CA" %><br />
+	Email: <%= f.text_field :email, placeholder: "ex. doctor@provider.com" %><br />
+	Phone Number: <%= f.text_field :phone_number, placeholder: "(XXX) XXX-XXXX" %><br />
 
-	<%= f.submit "Create" %>
+	<%= f.submit @button_face %>
 	
 <% end %> 
-
