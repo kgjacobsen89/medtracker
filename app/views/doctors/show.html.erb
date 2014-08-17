@@ -5,7 +5,14 @@ Specialization: <%= @doctor.specialty %> <br />
 Practice Location: <%= @doctor.location %> <br / >
 
 <h2> Patients </h2>
-
+<ul>
+	<% @doctor.patients.each do |p| %>
+	<li>
+		<strong> <%= p.first_name %> <%= p.last_name %><strong> 
+		<%= link_to "Click for Patient Information", patient_path(p) %>
+	</li>
+	<% end %>
+</ul>
 
 <h3> Contact Information </h3>
 Phone Number: <%= @doctor.phone_number %> <br />

@@ -5,13 +5,13 @@ class PatientsController < ApplicationController
 		my_patient_filter = params[:patientfilter]
 		case my_patient_filter
 		when "Show All"
-			@patients = Patient.all
+			@patients = Patient.all(order_by :last_name)
 		when "Male"
 			@patients = Patient.where(:sex => "Male")
 		when "Female"
 			@patients = Patient.where(:sex => "Female")
 		else 
-			@patients = Patient.all
+			@patients = Patient.all(order_by :last_name)
 		end
 	end
 
@@ -26,6 +26,7 @@ class PatientsController < ApplicationController
 	def create
 		@patient = Patient.new(patient_params)
 		if @patient.save 
+			#find doctors_ids in patient, then look up doctors based on doctor id, then add patient.id to a patient list in doctors model
 			redirect_to patient_path
 		else 
 			render 'new' 

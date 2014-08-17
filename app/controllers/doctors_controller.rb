@@ -4,7 +4,10 @@ class DoctorsController < ApplicationController
 		my_doctor_filter = params[:doctorfilter]
 		case my_doctor_filter
 		when "Show All"
-			@doctors = Doctor.all
+			@doctors = Doctor.all(order_by :last_name)
+		else 
+			@doctors = Doctor.all(order_by :last_name)
+		end
 	end
 
 	def new
