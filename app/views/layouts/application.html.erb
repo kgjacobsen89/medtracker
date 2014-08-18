@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Medtracker</title>
+  <title>MedTracker</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
@@ -9,6 +9,8 @@
 <body>
 
 <%= yield %>
+
+<%= link_to "Logout", session_path, medthod: :delete %>
 
 </body>
 </html>

@@ -1,0 +1,17 @@
+<h1> Full Medication List for <%= @patient.first_name %> <%= @patient.last_name %> </h1>
+
+<ul> 
+	<% @patient_medications.each do |m| %>
+	<li>
+		<strong> <%= m.name %> </strong> <br />
+		Dosage: <%= m.dosage %> <br />
+		Periodicity: <%= m.periodicity %> <br />
+		Duration: <%= m.duration %> <br />
+		Start Date: <%= m.start_date %> <br />
+		End Date: <%= m.end_date %> <br />
+		Prescribed by: <%= m.prescribedby %> <br />
+	</li>
+	<% end %>
+</ul>
+
+<%= link_to "Patient Profile", patient_path %>

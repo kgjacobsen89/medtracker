@@ -1,0 +1,13 @@
+<h1> Create Treatment Plan </h1>
+
+<%= form_for @patient_medication do |f| %>
+	Name: <%= f.text_field :name, placeholder: "Name" %><br />
+	Dosage: <%= f.text_field :dosage, placeholder: "Dosage (in mg)" %><br />
+	Periodicity: <%= f.text_field :periodicity, placeholder: "(i.e. daily, biweekly, monthly)" %><br />
+	Duration: <%= f.text_field :duration, placeholder: "(in days)" %><br />
+ 	Start Date: <%= f.date_field :start_date %><br />
+ 	End Date: <%= f.date_field :end_date %><br />
+
+ 	<%= f.submit @button_face %>
+
+ <% end %>

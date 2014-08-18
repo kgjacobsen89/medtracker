@@ -3,14 +3,7 @@ class Medication
   include Mongoid::Document
 
   field :name, type: String
-  field :dosage, type: String
-  field :periodicity, type: String
-  field :duration, type: String
   field :prescribedby, type: String
-  field :start_date, type: Date
-  field :end_date, type: Date
-
-  validates_presence_of :name, :dosage, :periodicity, :duration, :prescribedby
 
   has_many :patient_medications
   has_many :med_prescribed_bys

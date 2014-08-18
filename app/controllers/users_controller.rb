@@ -10,11 +10,11 @@ class UsersController < ApplicationController
 
   def create
     if params[:user_type] == 'Patient'
-      @user = Patient.new(params.require(:user).permit(:first_name, :last_name, :username, :email, :phone_number, :password, :password_confirmation))
+      @user = Patient.new(user_params)
         session[:user_id] = @user.id.to_s if @user.save
         redirect_to new_patient_path(patient_id: @user.id)
     elsif params[:user_type] == 'Doctor'
-      @user = Doctor.new(params.require(:user).permit(:first_name, :last_name, :username, :email, :phone_number, :password, :password_confirmation))
+      @user = Doctor.new(user_params)
         session[:user_id] = @user.id.to_s if @user.save
         redirect_to new_doctor_path(doctor_id: @user.id)
     else
@@ -26,5 +26,10 @@ class UsersController < ApplicationController
   	User.find(params[:id]).destroy
     redirect_to root_path
   end
+
+  private
+  def user_params
+    params.require(:user).permit(
+      :username, :email, :password, :password_confirmation)
   
 end

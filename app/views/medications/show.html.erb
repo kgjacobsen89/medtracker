@@ -1,6 +1,6 @@
 <h1> <%= @medication.name %> </h1>
 
-<h2> Doctors Familiar with <%= @medication.name %> </h2>
+<h2> Doctors with <%= @medication.name %> Experience </h2>
 <ul>
 	<% @medication.doctor_ids.each do |d| %>
 	<li>
@@ -12,8 +12,7 @@
 </ul>
 
 
+<%= link_to "Delete", :medication, method: :delete, data: {confirm: "Are you sure you want to delete #{@medication.name}?"} %>
 
-
-<%= link_to "Delete", :medication, method: :delete, data: { confirm: "Are you sure you want to delete #{@medication.name}?"} %>
-
-<%= link_to "Back to the list!", user_medications_path(@user.id) %>
+<%= link_to "Full List of Prescribed Medications", medications_path %>
+<%= link_to "All Doctor Users", doctors_path %>

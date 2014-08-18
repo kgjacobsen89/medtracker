@@ -1,8 +1,10 @@
 Medtracker::Application.routes.draw do
 
   resources :users, shallow: true do
-    resources :medications
+    resources :patient_medications
   end 
+
+  resources :medications
 
   resources :doctors
   resources :patients

@@ -1,17 +1,12 @@
-<h1>Medications</h1>
+<h1> Medications </h1>
 <ul>
 	<% @medications.each do |m| %>
 	<li>
 		<strong><%= m.name %> </strong> <br />
-		Dosage: <%= m.dosage %> <br/>
-		Periodicity: <%= m.periodicity %> <br />
-		Duration: <%= m.duration %> <br />
-		Start Date: <%= m.start_date %> <br />
-		End Date: <%= m.end_date %> <br />
 		Prescribed By: Dr. <%= m.prescribedby %> 
 		<i><% link_to "Doctor Profile", doctor_path(m) %></i>
 	</li>
 	<% end %>
 </ul>
 
-<%= link_to "My Profile", user_path(@user.id) %>
+<%= link_to "All Doctor Users", doctors_path %>

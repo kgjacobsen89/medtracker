@@ -15,21 +15,23 @@ Blood Type: <%= @patient.blood_type %> <br />
 	<% end %>
 </ul>
 
-<h2> Patient Medications </h2>
+<h2> Patient's Medications </h2>
+<%= link to "Add New Medication", new_medication_path %> <br />
 <ul>
 	<% @patient.medication_ids.each do |m| %>
 	<li>
-		<strong> <%= m.name %> </strong>
-		<%= link_to "More Medication Information", medication_path(m) %> <br />
+		<strong> <%= m.name %> </strong> <br /> --[ <%= m.prescribedby %> ]
+		<%= link_to "More Medication Info", medication_path(m) %> <br />
 	</li>
 	<% end %>
 </ul>
+<%= link to "Detailed Patient Medication List", user_patient_medications_path(@user.id) %> <br />
 
 <h3> Contact Information </h3>
 Phone: <%= @patient.phone_number %> <br />
 Email: <%= @patient.email %><br />
 
 
-<%= link_to "Delete Patient", :patient, method: :delete, data: {confirm: "Are you sure you want to delete #{@patient.first_name} #{@patient.last_name }?"} %>
+<%= link_to "Delete Patient", :patient, method: :delete, data: {confirm: "Are you sure you want to delete #{@patient.first_name} #{@patient.last_name}?"} %>
 
 
