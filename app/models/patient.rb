@@ -5,9 +5,7 @@ class Patient < User
   field :blood_type, type: String
 
   has_many :patient_medications
-  accepts_nested_attributes_for :patient_medications
   has_many :patient_doctors
-  accepts_nested_attributes_for :patient_doctors
 
   def medications
     Medication.find medication_ids

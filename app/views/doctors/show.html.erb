@@ -8,8 +8,18 @@ Practice Location: <%= @doctor.location %> <br / >
 <ul>
 	<% @doctor.patients.each do |p| %>
 	<li>
-		<strong> <%= p.first_name %> <%= p.last_name %><strong> 
+		<strong> <%= p.first_name %> <%= p.last_name %></strong> 
 		<%= link_to "More Patient Information", patient_path(p) %>
+	</li>
+	<% end %>
+</ul>
+
+<h2> Prescriptions </h2>
+<ul> 
+	<% @doctor.medications.each do |m| %>
+	<li>
+		<strong> <%= m.name %> </strong>
+		<%= link_to "More Medication Information", medication_path(m) %>
 	</li>
 	<% end %>
 </ul>
