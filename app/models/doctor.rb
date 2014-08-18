@@ -1,6 +1,6 @@
 class Doctor < User 
 
-  field :speciality, type: String
+  field :specialty, type: String
   field :location, type: String
 
   has_many :patient_doctors

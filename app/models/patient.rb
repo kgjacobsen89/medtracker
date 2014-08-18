@@ -39,6 +39,7 @@ class Patient < User
     medications_string 
   end
 
+
   def doctors
     Doctor.find doctor_ids
   end

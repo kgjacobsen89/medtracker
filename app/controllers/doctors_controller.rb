@@ -5,6 +5,8 @@ class DoctorsController < ApplicationController
 		case my_doctor_filter
 		when "Show All"
 			@doctors = Doctor.all(order_by :last_name)
+		when "Psychiatrists Only"
+			@doctors = Doctor.where(:speciality => "Psychiatrist")
 		else 
 			@doctors = Doctor.all(order_by :last_name)
 		end

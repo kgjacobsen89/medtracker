@@ -9,7 +9,7 @@ Practice Location: <%= @doctor.location %> <br / >
 	<% @doctor.patients.each do |p| %>
 	<li>
 		<strong> <%= p.first_name %> <%= p.last_name %><strong> 
-		<%= link_to "Click for Patient Information", patient_path(p) %>
+		<%= link_to "More Patient Information", patient_path(p) %>
 	</li>
 	<% end %>
 </ul>

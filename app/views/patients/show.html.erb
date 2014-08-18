@@ -10,7 +10,7 @@ Blood Type: <%= @patient.blood_type %> <br />
 	<% @patient.doctor_ids.each do |d| %>
 	<li>
 		<strong> Dr. <%= d.first_name %> <%= d.last_name %> </strong>
-		<%= link_to "Doctor Profile", doctor_path(d) %>
+		<i><%= link_to "Doctor Profile", doctor_path(d) %></i>
 	</li>
 	<% end %>
 </ul>
@@ -20,7 +20,7 @@ Blood Type: <%= @patient.blood_type %> <br />
 	<% @patient.medication_ids.each do |m| %>
 	<li>
 		<strong> <%= m.name %> </strong>
-		<%= link_to "Medication Profile", medication_path(m) %> <br />
+		<%= link_to "More Medication Information", medication_path(m) %> <br />
 	</li>
 	<% end %>
 </ul>

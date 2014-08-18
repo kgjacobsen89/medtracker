@@ -5,7 +5,7 @@
 	<%= f.text_field :dosage, placeholder: "Dosage (in mg)" %><br />
 	<%= f.text_field :periodicity, placeholder: "(i.e. daily, biweekly, monthly)" %><br />
 	<%= f.number_field :duration, placeholder: "(in months)" %><br />
-	<%= f.select_tag :presribedby, options_for_select(:doctor_ids, @patient.doctor_ids.map{ |d| [d.last_name, d.id]}) :selected => params[:prescribedby] %> <br />
+	<%= f.select_tag :prescribedby, options_for_select(:doctor_ids, @patient.doctor_ids.map{ |d| [d.last_name, d.id]}) :selected => params[:prescribedby] %> <br />
 	<%= f.submit "Add Medication" %><br>
 <% end %>
 

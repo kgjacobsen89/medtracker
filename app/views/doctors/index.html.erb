@@ -1,13 +1,17 @@
 <h1> Doctors </h1>
 <p>
 	<%= link_to "Show All", doctors_path(doctorfilter: "Show All") %> <br/>
+	<%= link_to "Psychiatrists Only", doctors_path(doctorfilter: "Show All") %> <br />
 </p>
 
 <ul>
 	<% @doctors.each do |d| %>
 	<li>
-		<strong> Dr. <%= d.first_name %> <%= d.last_name %> </strong>
-		<%= link_to "Doctor Profile", doctor_path(d) %>
+		<strong> Dr. <%= d.first_name %> <%= d.last_name %> </strong> <br />
+		<%= d.specialty %>, <%= d.location %> <br />
+		<i><%= link_to "Doctor Profile", doctor_path(d) %></i>
 	</li>
 	<% end %>
 </ul>
+
+<%= link_to "All Patients", patients_path %>
