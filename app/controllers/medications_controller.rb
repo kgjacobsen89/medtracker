@@ -31,7 +31,7 @@ class MedicationsController < ApplicationController
 	def medication_params
 		params.require(:medication).permit(
 			:name, :prescribedby, :doctor_ids => [] )
-
+	end
 end
 
 

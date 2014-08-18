@@ -5,7 +5,9 @@ class Patient < User
   field :blood_type, type: String
 
   has_many :patient_medications
+  accepts_nested_attributes_for :patient_medications
   has_many :patient_doctors
+  accepts_nested_attributes_for :patient_doctors
 
   def medications
     Medication.find medication_ids
@@ -39,33 +41,23 @@ class Patient < User
 
 
   def doctors
-    Doctor.find doctor_ids
+    Doctor.find(doctor_ids)
   end
 
   def doctor_ids
-    doctor_ids_array = []
-    self.patient_doctors.each do |one_patient_doctor|
-      if one_patient_doctor.doctor_id
-        doctor_ids_array.push one_patient_doctor.doctor_id
-      end
+    ret = []
+    self.patient_doctors.each do |r|
+      ret << r.doctor_id if r.doctor_id
     end
-    doctor_ids_array
+    ret
   end
 
   def doctor_ids=(list)
-    self.patient_doctors.destroy 
+    self.save
+    self.patient_doctors.destroy
     list.each do |doctor_id|
       self.patient_doctors.create(doctor_id: doctor_id) unless doctor_id.blank?
     end
   end
-
-  def doctor_list
-    doctors_string = ""
-    doctors.each do |one_doctor|
-      doctors_string += ", " + one_doctor.first_name + " " + one_doctor.last_name
-    end
-    doctors_string.slice(2, doctors_string.length - 1)
-    doctors_string
-  end
-
 end
+

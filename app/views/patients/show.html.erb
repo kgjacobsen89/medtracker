@@ -7,7 +7,7 @@ Blood Type: <%= @patient.blood_type %> <br />
 
 <h2> Patient's Selected Doctors </h2>
 <ul>
-	<% @patient.doctor_ids.each do |d| %>
+	<% @doctors.each do |d| %>
 	<li>
 		<strong> Dr. <%= d.first_name %> <%= d.last_name %> </strong>
 		<i><%= link_to "Doctor Profile", doctor_path(d) %></i>
@@ -16,7 +16,7 @@ Blood Type: <%= @patient.blood_type %> <br />
 </ul>
 
 <h2> Patient's Medications </h2>
-<%= link to "Add New Medication", new_medication_path %> <br />
+<%= link_to "Add New Medication", new_medication_path %> <br />
 <ul>
 	<% @patient.medication_ids.each do |m| %>
 	<li>
@@ -25,7 +25,7 @@ Blood Type: <%= @patient.blood_type %> <br />
 	</li>
 	<% end %>
 </ul>
-<%= link to "Detailed Patient Medication List", user_patient_medications_path(@user.id) %> <br />
+<%= link_to "Detailed Patient Medication List", user_patient_medications_path(@patient.id) %> <br />
 
 <h3> Contact Information </h3>
 Phone: <%= @patient.phone_number %> <br />

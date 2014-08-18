@@ -3,9 +3,9 @@
 <%= form_for @patient do |f| %>
 	First Name: <%= f.text_field :first_name, placeholder: "ex. John" %><br />
 	Last Name: <%= f.text_field :last_name, placeholder: "ex. Doe" %><br />
-	Sex: <%= f.select_tag :sex, options_for_select(["Male", "Female", "TransMale/Transman", "TransFemale/Transwoman", "Genderqueer", "Decline to State"]) :selected => params[:sex] %><br />
+	Sex: <%= f.select :sex, options_for_select(["Male", "Female", "TransMale/Transman", "TransFemale/Transwoman", "Genderqueer", "Decline to State"]), :selected => params[:sex] %><br />
 	Date of Birth: <%= f.date_field :DOB %><br />
-	Blood Type: <%= f.select_tag :blood_type, options_for_select(["O+", "O-", "A+", "A-", "B+", "B-", "AB+", "AB-", "Unknown"]) :selected => params[:blood_type] %><br />
+	Blood Type: <%= f.select :blood_type, options_for_select(["O+", "O-", "A+", "A-", "B+", "B-", "AB+", "AB-", "Unknown"]), :selected => params[:blood_type] %><br />
 	Email: <%= f.text_field :email, placeholder: "ex. patient@gmail.com" %><br />
 	Phone Number: <%= f.text_field :phone_number, placeholder: "(XXX) XXX-XXXX" %><br />
 	Your Doctors: <%= f.collection_select(:doctor_ids, Doctor.all, :id, :last_name, {:prompt => "Please select a doctor"}, {:multiple => true}) %><br />
@@ -14,5 +14,4 @@
 
 <% end %>
 
-<%= link_to "User Page", patient_path(@user.id) %>
 
