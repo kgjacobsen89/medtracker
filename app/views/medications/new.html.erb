@@ -2,6 +2,6 @@
 
 <%= form_for @medication do |f| %>
 	Name: <%= f.text_field :name, placeholder: "Name" %><br />
-	Prescribed By: <%= f.select :prescribedby, options_for_select(:doctor_ids, @patient.doctor_ids.map{ |d| [d.last_name, d.id]}), :selected => params[:prescribedby] %> <br />
+	Prescribed By: <%= f.select :prescribedby, options_for_select(:doctor_id, @patient.doctor_ids.map{ |d| [d.last_name, d.id]}), :selected => params[:prescribedby] %> <br />
 	<%= f.submit @button_face %>
 <% end %>
