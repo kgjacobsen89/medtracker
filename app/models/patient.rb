@@ -10,7 +10,7 @@ class Patient < User
   accepts_nested_attributes_for :patient_doctors
 
   def medications
-    Medication.find medication_ids
+    Medication.find(medication_ids)
   end
 
   def medication_ids

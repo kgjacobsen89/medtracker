@@ -10,10 +10,11 @@ class MedicationsController < ApplicationController
 
 	def new
 		@medication = Medication.new
+		@patient = Patient.find(session[:user_id])
 	end
 
 	def create
-		@medication = PatientMedication.new(medication_params) 
+		@medication = PatientMedication.new(medication_params)
 		if @medication.save 
 			redirect_to new_user_patient_medication_path(patient_medication_id: @medication.id)
 		else 
@@ -30,7 +31,7 @@ class MedicationsController < ApplicationController
 
 	def medication_params
 		params.require(:medication).permit(
-			:name, :prescribedby, :doctor_ids => [] )
+			:name, :doctor_ids => [])
 	end
 end
 

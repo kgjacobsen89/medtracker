@@ -8,7 +8,7 @@
 	Blood Type: <%= f.select :blood_type, options_for_select(["O+", "O-", "A+", "A-", "B+", "B-", "AB+", "AB-", "Unknown"]), :selected => params[:blood_type] %><br />
 	Email: <%= f.text_field :email, placeholder: "ex. patient@gmail.com" %><br />
 	Phone Number: <%= f.text_field :phone_number, placeholder: "(XXX) XXX-XXXX" %><br />
-	Your Doctors: <%= f.collection_select(:doctor_ids, Doctor.all, :id, :last_name, {:prompt => "Please select a doctor"}, {:multiple => true}) %><br />
+	Your Doctors: <%= f.collection_select(:doctor_ids, Doctor.all, :id, :last_name, {:prompt => "Please select your doctors"}, {:multiple => true}) %><br />
 
 	<%= f.submit @button_face %>
 

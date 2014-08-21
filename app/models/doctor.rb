@@ -8,8 +8,28 @@ class Doctor < User
   has_many :med_prescribed_bys
   accepts_nested_attributes_for :med_prescribed_bys
 
+  def patients
+    Patient.find(patient_ids)
+  end
+
+  def patient_ids
+    ret = []
+    self.patient_doctors.each do |r|
+      ret << r.patient_id if r.patient_id
+    end
+    ret
+  end
+
+  def patient_ids=(list)
+    self.save
+    self.patient_doctors.destroy
+    list.each do |patient_id|
+      self.patient_doctors.create(patient_id: patient_id) unless patient_id.blank?
+    end
+  end
+
   def medications
-    Medication.find medication_ids
+    Medication.find(medication_ids)
   end
 
   def medication_ids
